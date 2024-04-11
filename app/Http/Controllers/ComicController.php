@@ -32,13 +32,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-
-        // creiamo una nuova pasta
-
         // dd($request);
-
         $newComic = new Comic();
-
 
         $newComic->title = $request['title'];
         $newComic->description = $request['description'];
@@ -52,7 +47,6 @@ class ComicController extends Controller
 
         $newComic->save();
 
-        // spostiamo l'utente nella index
         return redirect()->route('comics.index');
     }
 
