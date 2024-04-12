@@ -13,7 +13,7 @@
     <p>Writers: {{$comic->writers}}</p>
 
     <div>
-        <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning">Edit</a>
+        <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-primary">Edit</a>
     </div>
 </div>
 
