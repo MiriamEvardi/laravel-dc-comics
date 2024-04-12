@@ -14,7 +14,17 @@
 
     <div>
         <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-primary">Edit</a>
+
+        <form action="{{ route('comics.destroy', $comic->id) }}" method="POST" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</button>
+        </form>
     </div>
+
+
 </div>
+
+
 
 @endsection
