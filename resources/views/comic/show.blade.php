@@ -11,5 +11,10 @@
     <p>Type: {{$comic->type}}</p>
     <p>Artists: {{$comic->artists}}</p>
     <p>Writers: {{$comic->writers}}</p>
+
+    <div>
+        <a href="{{route('comics.edit', $comic->id)}}" class="btn btn-warning">Edit</a>
+    </div>
 </div>
+
 @endsection
