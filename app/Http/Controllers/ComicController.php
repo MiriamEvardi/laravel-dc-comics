@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Comic;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
@@ -32,7 +33,8 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        $this->validation($request->all());
+
         $newComic = new Comic();
 
         $newComic->title = $request['title'];
@@ -71,6 +73,8 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
+        $this->validation($request->all());
+
         $comic->title = $request['title'];
         $comic->description = $request['description'];
         $comic->thumb = $request['thumb'];
@@ -91,9 +95,26 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-
         $comic->delete();
 
         return redirect()->route('comics.index');
+    }
+
+    private function validation($data)
+    {
+        $validator = Validator::make($data, [
+            'title' => 'required|max:255',
+            'description' => 'required|max:5000',
+            'thumb' => 'nullable|max:5000',
+            'price' => 'required|max:10',
+            'series' => 'required|max:50',
+            'sale_date' => 'required|max:10',
+            'type' => 'required|max:50',
+            'artists' => 'required|max:1000',
+            'writers' => 'required|max:1000',
+        ], [
+            'required' => 'Insert :attribute',
+            'max' => ':attribute deve avere massimo :max caratteri',
+        ])->validate();
     }
 }
