@@ -113,8 +113,19 @@ class ComicController extends Controller
             'artists' => 'required|max:1000',
             'writers' => 'required|max:1000',
         ], [
-            'required' => 'Insert :attribute',
-            'max' => ':attribute deve avere massimo :max caratteri',
+            'required' => 'Inserire :attribute',
+            'max' => 'Il campo :attribute deve avere massimo :max caratteri',
+
+        ], [
+            'title' => 'titolo',
+            'description' => 'descrizione',
+            'thumb' => 'immagine',
+            'price' => 'prezzo',
+            'series' => 'serie',
+            'sale_date' => 'data di uscita',
+            'type' => 'tipo',
+            'artists' => 'artisti',
+            'writers' => 'scrittori',
         ])->validate();
     }
 }
